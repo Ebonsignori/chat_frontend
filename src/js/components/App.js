@@ -1,38 +1,26 @@
 import React from "react";
-import './App.css';
-import {socket} from "../index";
+import {connect} from "react-redux";
 import MarkdownRenderer from 'react-markdown-renderer';
 
+import './App.css';
+import {emitNewMessage} from "../actions/socket";
+
+@connect((store) => {
+    return {
+        messages: store.chat.messages
+    }
+})
 export class App extends React.Component {
     constructor(props) {
         super(props);
 
         // React state
         this.state = {
-            chat: [],
             user_message: ""
         };
 
-        this.updateChat = this.updateChat.bind(this);
         this.submitMessage = this.submitMessage.bind(this);
-        this.getOldMessages = this.getOldMessages.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
-        socket.on("message", this.updateChat);
-        socket.on("messages", this.getOldMessages);
-    }
-
-    getOldMessages(messages) {
-        console.log(messages);
-        this.setState({
-            chat: messages
-        });
-    }
-
-    updateChat(message) {
-        this.setState({
-            chat: [...this.state.chat, message]
-        });
     }
 
     submitMessage(event) {
@@ -48,8 +36,7 @@ export class App extends React.Component {
         }
 
         if (this.state.user_message) {
-            console.log(this.state.user_message);
-            socket.emit("message", this.state.user_message);
+            emitNewMessage(this.state.user_message);
             this.setState({
                 user_message: ""
             })
@@ -63,7 +50,7 @@ export class App extends React.Component {
 
     render() {
         // Javascript level logic here
-        let chat_log = this.state.chat.map((value) => {
+        let chat_log = this.props.messages.map((value) => {
             return (
                 <span className='chat-item' key={value.id}>
                     Date: {new Date(value.created_date).toLocaleDateString()}

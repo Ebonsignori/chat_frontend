@@ -1,13 +1,16 @@
 import React from "react";
 import { render } from "react-dom";
+import { Provider } from "react-redux";
 
 import {App} from "./components/App";
-import {initSocket} from "./socket/socket";
+import {initStore} from "./store";
 
-export const socket = initSocket();
+export const [socket, store] = initStore();
 
-// Insert react app into top-level html DOM
+// Insert react app, wrapped by redux provider, into top-level html DOM
 render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById("root")
 );
