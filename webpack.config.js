@@ -55,7 +55,7 @@ module.exports = {
         compress: true,
         // inline: true,
         contentBase: './dist',
-        port: 8085,
+        port: 8086,
         watchOptions: {
             aggregateTimeout: 300,
             poll: 1000

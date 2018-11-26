@@ -1,10 +1,10 @@
 import io from 'socket.io-client';
-import {WEBSOCKET_URL, WEBSOCKET_TIMEOUT} from "../config/config";
+import {SERVER_URL, WEBSOCKET_TIMEOUT} from "../config/config";
 import {WEBSOCKET_ACTIONS} from "../constants/action_types";
 
 export function initSocket(store) {
     // Initialize socket-io object
-    const socket = io(WEBSOCKET_URL, {
+    const socket = io(SERVER_URL, {
         transports: ['websocket'],
         timeout: WEBSOCKET_TIMEOUT,
         autoConnect: false,

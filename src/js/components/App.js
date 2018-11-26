@@ -4,6 +4,8 @@ import MarkdownRenderer from 'react-markdown-renderer';
 
 import './App.css';
 import {emitNewMessage} from "../actions/socket";
+import {Login} from "./User/Login";
+import {RegistrationModal} from "./User/RegistrationModal";
 
 @connect((store) => {
     return {
@@ -21,6 +23,13 @@ export class App extends React.Component {
 
         this.submitMessage = this.submitMessage.bind(this);
         this.handleChange = this.handleChange.bind(this);
+
+        // fetch("http://localhost:3000/test2").then((response) => {
+        //     console.log(response);
+        //     return response.json();
+        // }).then(function(myJson) {
+        //     console.log(JSON.stringify(myJson));
+        // });
     }
 
     submitMessage(event) {
@@ -49,7 +58,6 @@ export class App extends React.Component {
     }
 
     render() {
-        // Javascript level logic here
         let chat_log = this.props.messages.map((value) => {
             return (
                 <span className='chat-item' key={value.id}>
@@ -63,24 +71,35 @@ export class App extends React.Component {
             )
         });
 
-        // JSX (Html) Render logic here
         return (
             <React.Fragment>
+                <div className="app-grid">
+                    <div className="dash-container">
+                        <h1>Dashboard</h1>
+                    </div>
+                    <div className="login-container">
+                        <Login/>
+                    </div>
+                    <div className="chat-container">
+                        <div className='chat-box'>
+                            {chat_log}
+                        </div>
 
-            <div className='chat-box'>
-                {chat_log}
-            </div>
+                        <textarea
+                            onKeyDown={this.submitMessage}
+                            value={this.state.user_message}
+                            onChange={this.handleChange} />
 
-            <textarea
-                onKeyDown={this.submitMessage}
-                value={this.state.user_message}
-                onChange={this.handleChange} />
-
-            <button
-                onClick={() => this.submitMessage('button')}
-            > Submit
-            </button>
-
+                        <button
+                            onClick={() => this.submitMessage('button')}
+                        > Submit
+                        </button>
+                    </div>
+                    <div className="main-container">
+                        <h1>Main</h1>
+                    </div>
+                </div>
+                <RegistrationModal/>
             </React.Fragment>
         )
     }
