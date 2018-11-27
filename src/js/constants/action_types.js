@@ -19,6 +19,9 @@ export const WS_UNSUBSCRIBE = "WS_UNSUBSCRIBE";
 export const WS_NEW_MESSAGE = "WS_NEW_MESSAGE";
 export const WS_EXISTING_MESSAGES = "WS_EXISTING_MESSAGES";
 
+// User
+export const WS_USER_NOT_LOGGED_IN = "WS_USER_NOT_LOGGED_IN";
+
 /* Websocket action emit listeners
 *  The key of each WEBSOCKET_ACTION corresponds to the Redux action identifier --- i.e. WS_CONNECT
 *  The value of each WEBSOCKET_ACTION corresponds to the socket.io event listener --- i.e. socket.on('connect')
@@ -34,5 +37,8 @@ export const WEBSOCKET_ACTIONS = {
 
     // Chat
     WS_NEW_MESSAGE: "new_message",
-    WS_EXISTING_MESSAGES: "existing_messages"
+    WS_EXISTING_MESSAGES: "existing_messages",
+
+    // User
+    WS_USER_NOT_LOGGED_IN: "user_not_logged_in"
 };

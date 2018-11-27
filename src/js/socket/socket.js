@@ -1,6 +1,7 @@
 import io from 'socket.io-client';
 import {SERVER_URL, WEBSOCKET_TIMEOUT} from "../config/config";
-import {WEBSOCKET_ACTIONS} from "../constants/action_types";
+import {WEBSOCKET_ACTIONS, WS_USER_NOT_LOGGED_IN} from "../constants/action_types";
+import {notLoggedIn} from "../actions/user";
 
 export function initSocket(store) {
     // Initialize socket-io object
@@ -22,7 +23,13 @@ export function initSocket(store) {
         socket.on(WEBSOCKET_ACTIONS[type], payload => {
                 // console.log(WEBSOCKET_ACTIONS[type]);
                 // console.log(payload);
-                store.dispatch({type: type, date: new Date(), payload});
+
+                if (type === WS_USER_NOT_LOGGED_IN) {
+                    console.log("Here!");
+                    store.dispatch(notLoggedIn());
+                } else {
+                    store.dispatch({type: type, date: new Date(), payload});
+                }
             }
         )
     );

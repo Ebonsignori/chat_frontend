@@ -1,17 +1,18 @@
 import React from "react";
 import Modal from 'react-modal';
-import {closeModal} from "../../actions/modals";
 import connect from "react-redux/es/connect/connect";
-import {Signup} from "./Signup";
 
-const modal_name = "registration";
+import {closeModal} from "../../actions/modals";
+import {Login} from "./Login";
+
+const modal_name = "not_logged_in";
 
 @connect((store) => {
     return {
-        registration_modal_open: store.modals.registration_modal_open
+        not_logged_in_modal_open: store.modals.not_logged_in_modal_open
     }
 })
-export class RegistrationModal extends React.Component {
+export class NotLoggedInModal extends React.Component {
     constructor() {
         super();
 
@@ -29,13 +30,13 @@ export class RegistrationModal extends React.Component {
     render() {
         return (
             <Modal
-                isOpen={this.props.registration_modal_open}
+                isOpen={this.props.not_logged_in_modal_open}
                 onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.closeModal}
-                contentLabel="Registration Modal"
+                contentLabel="Not Logged In Modal"
             >
 
-                <Signup/>
+                <Login/>
             </Modal>
         );
     }

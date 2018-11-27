@@ -1,11 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
 import MarkdownRenderer from 'react-markdown-renderer';
-
 import './App.css';
 import {emitNewMessage} from "../actions/socket";
 import {Login} from "./User/Login";
 import {RegistrationModal} from "./User/RegistrationModal";
+import {NotLoggedInModal} from "./User/NotLoggedInModal";
+
+import Modal from 'react-modal';
+Modal.setAppElement("body");
 
 @connect((store) => {
     return {
@@ -92,7 +95,11 @@ export class App extends React.Component {
                         <h1>Main</h1>
                     </div>
                 </div>
+
+                /* Modals */
                 <RegistrationModal/>
+                <NotLoggedInModal/>
+
             </React.Fragment>
         )
     }

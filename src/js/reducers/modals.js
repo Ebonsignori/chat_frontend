@@ -1,7 +1,8 @@
 import {OPEN_MODAL, CLOSE_MODAL} from "../constants/action_types";
 
 const initial_state = {
-    registration_modal_open: false
+    registration_modal_open: false,
+    not_logged_in_modal_open: false
 };
 
 // Tokens reducer
@@ -13,6 +14,11 @@ export function modalsReducer(state=initial_state, action) {
                     return {
                         ...state,
                         registration_modal_open: true
+                    };
+                case "not_logged_in":
+                    return {
+                        ...state,
+                        not_logged_in_modal_open: true
                     };
                 default:
                     console.log("No modal for modal" + action.modal_to_open + " passed into openModal(modal)");
@@ -26,6 +32,11 @@ export function modalsReducer(state=initial_state, action) {
                     return {
                         ...state,
                         registration_modal_open: false
+                    };
+                case "not_logged_in":
+                    return {
+                        ...state,
+                        not_logged_in_modal_open: false
                     };
                 default:
                     console.log("No modal for modal" + action.modal_to_close + " passed into closeModal(modal)");
