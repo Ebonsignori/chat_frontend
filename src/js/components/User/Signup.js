@@ -57,7 +57,7 @@ export class Signup extends React.Component {
                 <input type="text" value={this.state.confirm_user_password} onChange={(event) => this.setState({confirm_user_password: event.target.value})}/>
                 <br />
 
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
             </form>
         )
     }

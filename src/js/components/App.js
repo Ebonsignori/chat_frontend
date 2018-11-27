@@ -23,13 +23,6 @@ export class App extends React.Component {
 
         this.submitMessage = this.submitMessage.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
-        // fetch("http://localhost:3000/test2").then((response) => {
-        //     console.log(response);
-        //     return response.json();
-        // }).then(function(myJson) {
-        //     console.log(JSON.stringify(myJson));
-        // });
     }
 
     submitMessage(event) {
@@ -48,7 +41,7 @@ export class App extends React.Component {
             emitNewMessage(this.state.user_message);
             this.setState({
                 user_message: ""
-            })
+            });
         }
     }
     handleChange(event) {

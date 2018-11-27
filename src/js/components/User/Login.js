@@ -16,17 +16,23 @@ export class Login extends React.Component {
             password: ""
         };
 
-        this.authenticateUser = this.authenticateUser.bind(this);
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
+
     }
 
-    authenticateUser(event) {
+    login(event) {
         event.preventDefault();
 
         (async () => {
             const results = await postObject("/users/login", {
                 account_name: this.state.account_name,
                 password: this.state.password
+            }, {
+                needs_credentials: true,
+                return_response: true
             });
+            console.log(results);
             let user_response = await results.text();
             if (user_response[0] === "{") {
                 user_response = JSON.parse(user_response);
@@ -36,10 +42,27 @@ export class Login extends React.Component {
 
     }
 
+    logout() {
+        (async () => {
+            const results = await postObject("/users/logout", {
+                account_name: this.state.account_name,
+            }, {
+                needs_credentials: true,
+                return_response: true
+            });
+            console.log(results);
+            let user_response = await results.text();
+            if (user_response[0] === "{") {
+                user_response = JSON.parse(user_response);
+            }
+            console.log(user_response);
+        })();
+    }
+
     render() {
         return (
             <div>
-            <form onSubmit={this.authenticateUser} className="login-form">
+            <form onSubmit={this.login} className="login-form">
                 <label>Username </label>
                 <input type="text" value={this.state.account_name} onChange={(event) => this.setState({account_name: event.target.value})}/>
                 <label>Password </label>
@@ -48,8 +71,8 @@ export class Login extends React.Component {
                 <button type="submit">Login</button>
             </form>
 
-            <br />
             <button onClick={() => this.props.dispatch(openModal("registration"))}>Register</button>
+            <button onClick={this.logout}>Logout</button>
             </div>
         )
     }
