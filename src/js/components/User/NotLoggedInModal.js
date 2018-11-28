@@ -35,6 +35,7 @@ export class NotLoggedInModal extends React.Component {
                 onRequestClose={this.closeModal}
                 contentLabel="Not Logged In Modal"
             >
+                You are not logged in!
 
                 <Login/>
             </Modal>

@@ -20,6 +20,8 @@ export const WS_NEW_MESSAGE = "WS_NEW_MESSAGE";
 export const WS_EXISTING_MESSAGES = "WS_EXISTING_MESSAGES";
 
 // User
+export const USER_LOGGED_IN = "USER_LOGGED_IN";
+export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
 export const WS_USER_NOT_LOGGED_IN = "WS_USER_NOT_LOGGED_IN";
 
 /* Websocket action emit listeners

@@ -34,7 +34,5 @@ export function initSocket(store) {
         )
     );
 
-    socket.connect();
-
     return socket;
 }

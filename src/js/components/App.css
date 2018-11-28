@@ -1,13 +1,15 @@
-body {
+html, body {
     margin: 0;
+    height: 100%;
+    width: 100%;
 }
 
 #root {
-    min-height: 99.5vh;
-    min-width: 99.5vw;
-    height: 99.5vh;
-    width: 99.5vw;
-    overflow: none;
+    min-height: 100vh;
+    min-width: 100vw;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
 /* Top level app grid */
@@ -18,7 +20,7 @@ body {
     width: 100%;
     display: grid;
     grid-template-rows: 10% 90%;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 30% 50% 20%;
     grid-template-areas:
             "dash dash login"
             "chat main main";
@@ -26,10 +28,15 @@ body {
     grid-gap: 1px;
     background-color: black;
 }
+
+/* Create grid-gap border */
 .app-grid > div {
     background-color: white;
-    padding: 15px;
     text-align: center;
+    max-height: 100%;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 .dash-container {
@@ -58,20 +65,7 @@ body {
 }
 .chat-container {
     grid-area: chat;
+    max-height: 100%;
+    max-width: 100%;
 }
 
-
-.red {
-    color: red;
-}
-.brown {
-  color: brown;
-}
-
-.chat-box {
-    display: flex;
-    flex-direction: column;
-}
-.chat-item {
-    border-bottom: 1px solid gray;
-}
